@@ -28,7 +28,7 @@ class TaskList {
         }
         //TODO check from duplicate codes
 
-        
+
         return $code;
     }
 
@@ -81,7 +81,9 @@ class TaskList {
             }
             $buffor .= '</td>';    
             $buffor .= '<td>';
+            $buffor .= '<a href="ticket.php?code='.$taskArray['code'].'">';
             $buffor .= $taskArray['title'];
+            $buffor .= '</a>';
             $buffor .= '</td>';        
             if($taskArray['resolvedTimestamp'] == 0) {
                 //sprawa nie rozwiazana
@@ -94,6 +96,15 @@ class TaskList {
         }
         $buffor .= '</table>';
         return $buffor;
+    }
+
+    function getByCode(string $code) { 
+        foreach ($this->taskList as $task) { //przejdz przez wszystkie zapisane zadania
+            $taskArray = $task->getAsArray(); //pobierz całe zadanie jakos tablice
+            if($taskArray['code'] == $code) // sprawdz czy kod zadania jest zgodny z poszukiwanym
+                return $taskArray; // jeśli jest zwróć zgodną tablicez zadaniem
+        }
+        return NULL; // jeśli doszło tu to nie znaleźlismy zadania w liscie 
     }
 }
 
