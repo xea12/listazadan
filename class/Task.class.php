@@ -27,6 +27,7 @@ class Task {
         $result['createdTimestamp'] = $this->createdTimestamp;
         $result['created'] = date('d M Y H:i:s', $this->createdTimestamp);
         $result['resolvedTimestamp'] = $this->resolvedTimestamp;
+        $result['resolved'] = date('d M Y H:i:s', $this->resolvedTimestamp);
         $result['title'] = $this->title;
         $result['content'] = $this->content;
         $result['priority'] = $this->priority;
