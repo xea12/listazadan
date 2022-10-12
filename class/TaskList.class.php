@@ -11,7 +11,25 @@ class TaskList {
 
     function addTask(Task $task) 
     {
+        $task->assignCode($this->generateNewCode());
         array_push($this->taskList, $task);
+    }
+
+    function generateNewCode() : string 
+    {
+        $code = "";
+        for($i = 0; $i < 11; $i++) {
+            if($i == 3 || $i == 7) {
+                $code .= "-";
+            } else {
+                $char = chr(rand(65,90)); // generuje losowa litere A-Z z tablicy ASCII
+                $code .= $char; 
+            }
+        }
+        //TODO check from duplicate codes
+
+        
+        return $code;
     }
 
     function loadTestData()
@@ -29,6 +47,7 @@ class TaskList {
         $buffor = '';
         $buffor .= '<table>';
         $buffor .='<tr>';
+        $buffor .='<td>ID sprawy</td>'; 
         $buffor .='<td>Data zgłoszenia</td>'; 
         $buffor .='<td>Priorytet</td>'; 
         $buffor .='<td>Tytuł</td>'; 
@@ -42,6 +61,9 @@ class TaskList {
                 $buffor .= $value;
                 $buffor .= '<td>';
             } */
+            $buffor .= '<td>';
+            $buffor .= $taskArray['code'];
+            $buffor .= '</td>';               
             $buffor .= '<td>';
             $buffor .= $taskArray['created'];
             $buffor .= '</td>';        
