@@ -1,11 +1,16 @@
 <pre>
 
 <?php
-require "class/task.class.php";
+require "class/TaskList.class.php";
 
-$t = new Task("zadanie testowe","treść zadania testowego");
-var_dump($t->getAsArray());
+$tl = new TaskList();
+$tl->loadTestData();
+
+
+//var_dump($tl);
 //print_r($t);
+
+echo $tl->getHTMLTable();
 
 ?>
 </pre>
