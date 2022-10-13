@@ -43,6 +43,12 @@ class Task {
         $this->code = $code;
     }
 
+    function close(string $code) {
+        if($this->code == $code) {
+            $this->resolvedTimestamp = time();
+        }
+    }
+
 
 }
 
