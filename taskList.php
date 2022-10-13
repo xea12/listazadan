@@ -21,10 +21,17 @@
 </head>
 <body>
 <h1>Lista Zadań:</h1>
+<button type="submit" id="addTask">Dodaj nowe zadanie</button>
+
 <?php
 echo $tl->getHTMLTable();
 
 ?>
-
+<script>
+   let a = document.querySelector('#addTask');
+   a.addEventListener("click", function() {
+    location.replace('new.php');
+   })
+</script>
 </body>
 </html>

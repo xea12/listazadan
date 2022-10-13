@@ -6,3 +6,18 @@ td {
     padding: 5px;
     text-align: center;
 }
+
+div#newTaskForm {
+    width: 30vh;
+    margin: 15px;
+}
+
+div#newTaskForm > form > * {
+    display: block;
+    margin-bottom: 10px;
+   
+}
+
+button#addTask {
+    margin-bottom: 10px;
+}
