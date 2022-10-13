@@ -81,7 +81,7 @@ class TaskList {
             }
             $buffor .= '</td>';    
             $buffor .= '<td>';
-            $buffor .= '<a href="ticket.php?code='.$taskArray['code'].'">';
+            $buffor .= '<a href="task.php?code='.$taskArray['code'].'">';
             $buffor .= $taskArray['title'];
             $buffor .= '</a>';
             $buffor .= '</td>';        
