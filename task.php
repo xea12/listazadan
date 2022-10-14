@@ -24,13 +24,13 @@ $tl = $_SESSION['tl'];
                 header('Location: taskList.php');
             }
             
-        echo "kod zadania: ".$task['code'].'<br>';
-        echo "Tytuł zadania: ".$task['title'].'<br>';
-        echo "treść zadania: ".$task['content'].'<br>';
+        echo "kod zadania: ".$task['code'].'<br><br>';
+        echo "Tytuł zadania: ".$task['title'].'<br><br>';
+        echo "treść zadania: <br><br>".$task['content'].'<br><br><br><br><br>';
         if($task['resolvedTimestamp'] == 0 ) {
-            echo "Status zadania: w toku<br>";
+            echo "Status zadania: w toku<br><br>";
         } else {
-            echo " zadanie zakończone: ".$task['resolved']."<br>";
+            echo " zadanie zakończone: ".$task['resolved']."<br><br><br><br>";
         }
         echo '<a href="task.php?code='.$task['code'].'&action=close">Zamknij zadanie</a><br>';
         echo '<a href="taskList.php">Wróc do listy zadań</a>';
