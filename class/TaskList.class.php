@@ -11,6 +11,8 @@ class TaskList {
     }
     function syncToDB() {
         $db = new mysqli('localhost', 'root','','taskList');
+        if ($db->connect_error) {
+            die("Connection failed: " . $db->connect_error);}
         foreach ($this->taskList as $task) {
             $taskArray = $task->getAsArray();
             $code = $taskArray['code'];
@@ -35,6 +37,20 @@ class TaskList {
         }
         
 
+    }
+
+    function syncFromDB() {
+        $db = new mysqli('localhost', 'root','','taskList');
+        $q = $db->prepare("SELECT * FROM task ORDER BY created DESC");
+        $q->execute();
+        $result = $q->get_result();
+        $this->taskList = array();
+        while($row = $result->fetch_assoc()) {
+            $t = new Task($row['title'], $row['content'], $row['priority']);
+            $t->assignCode($row['code']);
+            $t->setTimestamps(strtotime($row['created']), strtotime($row['resolved']));
+            array_push($this->taskList, $t);
+        }
     }
 
     function addTask(Task $task) 
@@ -73,9 +89,9 @@ class TaskList {
     function getHTMLTable()
     {
         $buffor = '';
-        $buffor .= '<table>';
+        $buffor .= '<table class="table table-hover" style="width: 90%; margin: 0 auto; ">';
         $buffor .='<tr>';
-        $buffor .='<td>ID sprawy</td>'; 
+/*         $buffor .='<td >ID sprawy</td>';  */
         $buffor .='<td>Data zgłoszenia</td>'; 
         $buffor .='<td>Priorytet</td>'; 
         $buffor .='<td>Tytuł</td>'; 
@@ -89,9 +105,9 @@ class TaskList {
                 $buffor .= $value;
                 $buffor .= '<td>';
             } */
-            $buffor .= '<td>';
+/*             $buffor .= '<td>';
             $buffor .= $taskArray['code'];
-            $buffor .= '</td>';               
+            $buffor .= '</td>';    */            
             $buffor .= '<td>';
             $buffor .= $taskArray['created'];
             $buffor .= '</td>';        

@@ -49,6 +49,13 @@ class Task {
         }
     }
 
+    function setTimestamps(int $created, int $resolved) {
+        $this->createdTimestamp = $created;
+        $this->resolvedTimestamp = $resolved;
+        if($this->resolvedTimestamp < 0) 
+            $this->resolvedTimestamp = 0;
+    }
+
 
 }
 

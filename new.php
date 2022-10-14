@@ -19,6 +19,7 @@ session_start();
         $tl = $_SESSION['tl'];
         $t = new Task($_REQUEST['title'], $_REQUEST['content'], $_REQUEST['priority']);
         $tl->addTask($t);
+        $tl->syncToDB();
         header('Location: taskList.php');
     }
     ?>
@@ -35,8 +36,15 @@ session_start();
                 <option value="2" selected>Średni</option>
                 <option value="3">Wysoki</option>
             </select>
-            <input type="submit" value="Dodaj zadanie">
+            <input type="submit" value="Dodaj zadanie"><br>
         </form>
+        <button id="wroc">Wróć do listy</button>
     </div>
+    <script>
+   let a = document.querySelector('#wroc');
+   a.addEventListener("click", function() {
+    location.replace('taskList.php');
+   })
+</script>
 </body>
 </html>

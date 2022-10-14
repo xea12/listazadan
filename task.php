@@ -1,6 +1,7 @@
 <?php 
 require "class/TaskList.class.php";
 session_start();
+$tl = $_SESSION['tl'];
 ?>
 
 <html lang="pl">
@@ -19,6 +20,7 @@ session_start();
         if(isset($_REQUEST['action']))
             if($_REQUEST['action'] == "close") {
                 $_SESSION['tl']->closeByCode($_REQUEST['code']);
+                $tl->syncToDB();
                 header('Location: taskList.php');
             }
             
